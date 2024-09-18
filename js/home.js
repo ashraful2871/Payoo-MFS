@@ -3,7 +3,7 @@
 document
   .getElementById("btn-add-money")
   .addEventListener("click", function (event) {
-    // prevent relode page after submit
+    // prevent reload page after submit
     event.preventDefault();
 
     // step-2 get money to be added the account balance also pin number
@@ -29,7 +29,62 @@ document
       // clear the input
       document.getElementById("input-amount").value = "";
       document.getElementById("input-pin-number").value = "";
+      alert("Are you sure You want to add money your wallet?");
     } else {
       alert("Failed to add money! please provide the valid pin number!");
     }
   });
+
+// Cash Out
+document
+  .getElementById("btn-cash-out")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    const cashOutAmount = document.getElementById(
+      "input-cash-out-amount"
+    ).value;
+    const cashOutAmountToNumber = parseFloat(cashOutAmount);
+    const cashOutPin = document.getElementById(
+      "input-cash-out-pin-number"
+    ).value;
+
+    if (cashOutPin === "12") {
+      const accountBalance =
+        document.getElementById("account-balance").innerText;
+      const accountBalanceToNumber = parseFloat(accountBalance);
+      const newBalance = accountBalanceToNumber - cashOutAmountToNumber;
+
+      document.getElementById("account-balance").innerText = newBalance;
+      document.getElementById("input-cash-out-amount").value = "";
+      document.getElementById("input-cash-out-pin-number").value = "";
+      alert("are you sure you want to cash out money from your wallet?");
+    } else {
+      alert("Failed to cash out! Please try again");
+    }
+  });
+
+//===========================================toggle features============================
+
+//show cash out form
+document.getElementById("show-cash-out").addEventListener("click", function () {
+  // show cash out button when click
+  document.getElementById("cash-out-form").classList.remove("hidden");
+
+  // hide the add money form
+  document.getElementById("add-money-form").classList.add("hidden");
+});
+
+// show add money form and hide the cash out form
+document
+  .getElementById("show-add-money")
+  .addEventListener("click", function () {
+    // show add money button when click
+    document.getElementById("add-money-form").classList.remove("hidden");
+
+    //hide cash out form\
+    document.getElementById("cash-out-form").classList.add("hidden");
+  });
+
+const nameOfOrganization = document.getElementById("name").value;
+console.log(nameOfOrganization);
+event.stopImmediatePropagation();
