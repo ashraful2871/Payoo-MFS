@@ -4,9 +4,17 @@ document
   .addEventListener("click", function (event) {
     // step-2 prevent default behavior(prevent reloding browser)
     event.preventDefault();
-    console.log("Ash");
 
     // step-3 get the phone number
     const phoneNumber = document.getElementById("phone-number").value;
-    console.log(phoneNumber);
+    const pinNumber = document.getElementById("pin-number").value;
+
+    //bad way to practice its will not in future
+    if (phoneNumber === "01759030544" && pinNumber === "2871") {
+      window.location.href = "/home.html";
+    } else {
+      alert("your phone number and pin is incorrect");
+    }
+
+    console.log(phoneNumber, pinNumber);
   });
